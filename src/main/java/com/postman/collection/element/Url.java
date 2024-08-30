@@ -103,7 +103,7 @@ public class Url extends CollectionElement {
             rawUrl = rawUrl.replace(":" + this.getPort(),"");
         }
 
-        if(rawUrl.length() == 0) {
+        if(rawUrl.isEmpty()) {
             return;
         }
         
@@ -114,7 +114,7 @@ public class Url extends CollectionElement {
         
 
         
-        if(rawUrl != null && rawUrl.length() > 0) {
+        if(rawUrl != null && !rawUrl.isEmpty()) {
             this.setPath(rawUrl);
         }
     
@@ -184,15 +184,15 @@ public class Url extends CollectionElement {
 
         ArrayList<String> pathElements;
         ArrayList<String> liPath;
-        this.path = new ArrayList<String>();
-        if (rawPath != null && rawPath.length() > 0) {
-            pathElements = new ArrayList<String>(Arrays.asList(rawPath.split("/")));
-            liPath = new ArrayList<String>(Arrays.asList(new String[0]));
-            for (int i = 0; i < pathElements.size(); i++) {
-                if (pathElements.get(i) != null && pathElements.get(i).length() > 0) {
-                    liPath.add(pathElements.get(i));
-                    if (pathElements.get(i).substring(0, 1).equals(":")) {
-                            this.addPathVariable(pathElements.get(i).substring(1), null, null);
+        this.path = new ArrayList<>();
+        if (rawPath != null && !rawPath.isEmpty()) {
+            pathElements = new ArrayList<>(Arrays.asList(rawPath.split("/")));
+            liPath = new ArrayList<>();
+            for (String pathElement : pathElements) {
+                if (pathElement != null && !pathElement.isEmpty()) {
+                    liPath.add(pathElement);
+                    if (pathElement.charAt(0) == ':') {
+                        this.addPathVariable(pathElement.substring(1), null, null);
                     }
                 }
             }
@@ -212,11 +212,11 @@ public class Url extends CollectionElement {
      */
     public void setQuery(String rawQuery) {
         ArrayList<String> queryElements;
-        if (rawQuery != null && rawQuery.length() > 0) {
-            queryElements = new ArrayList<String>(Arrays.asList(rawQuery.split("&", 0)));
+        if (rawQuery != null && !rawQuery.isEmpty()) {
+            queryElements = new ArrayList<>(Arrays.asList(rawQuery.split("&", 0)));
 
-            for (int i = 0; i < queryElements.size(); i++) {
-                this.addQuery(queryElements.get(i));
+            for (String queryElement : queryElements) {
+                this.addQuery(queryElement);
             }
         } else {
             this.query = null;
@@ -232,11 +232,11 @@ public class Url extends CollectionElement {
      */
     public void setHost(String rawHost) {
 
-        if (rawHost == null || rawHost.length() < 1) {
+        if (rawHost == null || rawHost.isEmpty()) {
             return;
         }
 
-        this.host = new ArrayList<String>(Arrays.asList(rawHost.split("\\.", 0)));
+        this.host = new ArrayList<>(Arrays.asList(rawHost.split("\\.", 0)));
 
     }
 
@@ -255,29 +255,29 @@ public class Url extends CollectionElement {
             for(String curHost: this.getHosts()) {
                 retVal = retVal + curHost + ".";
             }
-            if(retVal.substring(retVal.length() - 1).equals(".")) {
+            if(retVal.endsWith(".")) {
                 retVal = retVal.substring(0,retVal.length() -1);
             }
         }
 
         
         
-        if(this.getPort() != null && this.getPort().length() > 0) {
+        if(this.getPort() != null && !this.getPort().isEmpty()) {
             retVal = retVal + ":" + this.getPort();
         }
     
         
-        if(this.getPaths() != null && this.getPaths().size() > 0) {
+        if(this.getPaths() != null && !this.getPaths().isEmpty()) {
             for(String curPath: this.getPaths())
             {
                 retVal = retVal + "/"+curPath;
             }
-            if(retVal.substring(retVal.length() - 1).equals("/")) {
+            if(retVal.endsWith("/")) {
                 retVal = retVal.substring(0,retVal.length() -1);
             }
         }
         
-        if(this.getQueryElements() == null || this.getQueryElements().size() == 0) {
+        if(this.getQueryElements() == null || this.getQueryElements().isEmpty()) {
             return retVal;
         }
         
@@ -285,7 +285,7 @@ public class Url extends CollectionElement {
         for(Property curQuery : this.getQueryElements()) {
             retVal = retVal + curQuery.getKey() + "=" + curQuery.getValue() + "&";
         }
-        if(retVal.substring(retVal.length() - 1).equals("&")) {
+        if(retVal.endsWith("&")) {
             retVal = retVal.substring(0,retVal.length() -1);
         }
         
@@ -303,7 +303,7 @@ public class Url extends CollectionElement {
     public void setProtocol(String rawProtocol) {
 
         
-        if (rawProtocol == null || rawProtocol.length() < 1) {
+        if (rawProtocol == null || rawProtocol.isEmpty()) {
             protocol = null;
         } else if (rawProtocol.toLowerCase().contains("https")) {
             protocol = "https";
@@ -345,9 +345,9 @@ public class Url extends CollectionElement {
      */
     
     public Url(String host, String path) throws DuplicateVariableKeyException {
-        this.host = new ArrayList<String>();
+        this.host = new ArrayList<>();
         this.setHost(host);
-        this.path = new ArrayList<String>();
+        this.path = new ArrayList<>();
         this.setPath(path);
     }
 
@@ -492,7 +492,7 @@ public class Url extends CollectionElement {
      */
     public void setQueryELement(Property element, int index) throws IllegalPropertyAccessException {
         if(this.query == null) {
-            this.query = new PropertyList<Property>();
+            this.query = new PropertyList<>();
         }
         if(index < 0 || index > this.query.size() + 1) {
             throw new IllegalPropertyAccessException("Index [" + index + "] is out of bounds");
@@ -516,8 +516,8 @@ public class Url extends CollectionElement {
         String queryString = "";
         String curQueryElement;
         for(Property curVar : query) {
-            curQueryElement = curVar.getKey() + "" + "=" + curVar.getValue() + "";
-            queryString = queryString + (queryString.length() > 0 ? "&" : "") + curQueryElement;
+            curQueryElement = curVar.getKey() + "=" + curVar.getValue();
+            queryString = queryString + (!queryString.isEmpty() ? "&" : "") + curQueryElement;
         }
 
         return queryString;
@@ -592,7 +592,7 @@ public class Url extends CollectionElement {
      */
     public void setPathVariable(Property varPath) {
         if(this.variable == null) {
-            this.variable = new PropertyList<Property>();
+            this.variable = new PropertyList<>();
         }
         for(Property curVar : this.variable) {
             if (curVar.getKey().equals(varPath.getKey())) {
@@ -611,7 +611,7 @@ public class Url extends CollectionElement {
             throw new DuplicateVariableKeyException("Path variable [" + varPath.getKey() + "] already present in this collection");
         }
         if(this.variable == null) {
-            this.variable = new PropertyList<Property>();
+            this.variable = new PropertyList<>();
         }
         this.variable.add(varPath);
     }
@@ -621,11 +621,7 @@ public class Url extends CollectionElement {
      * @param key
      */
     public void removePathVariable(String key) {
-        for(Property curVar : this.variable) {
-            if(curVar.getKey().equals(key)) {
-                this.variable.remove(curVar);
-            }
-        }
+        this.variable.removeIf(curVar -> curVar.getKey().equals(key));
     }
 
     
@@ -666,7 +662,7 @@ public class Url extends CollectionElement {
     public void addQuery(String key, String value, String description)  {
 
         if (this.query == null) {
-            this.query = new PropertyList<Property>();
+            this.query = new PropertyList<>();
         }
         this.query.add(new Property(key, value, description));
 
@@ -683,11 +679,11 @@ public class Url extends CollectionElement {
 
         ArrayList<String> elements;
 
-        if ((queryString == null || queryString.length() < 1)) {
+        if ((queryString == null || queryString.isEmpty())) {
             return;
         }
 
-        elements = new ArrayList<String>(Arrays.asList(queryString.split("=", 0)));
+        elements = new ArrayList<>(Arrays.asList(queryString.split("=", 0)));
         if (elements.size() == 1) {
             this.addQuery(elements.get(0), "");
 
@@ -716,12 +712,6 @@ public class Url extends CollectionElement {
      * @param port The port as a string.  
      */
     public void setPort(String port)  {
-        if(port == null) {
-            this.port = null;
-        }
-        else {
-            this.port = port;
-            
-        }
+        this.port = port;
     }
 }

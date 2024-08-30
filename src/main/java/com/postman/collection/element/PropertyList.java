@@ -44,7 +44,7 @@ public class PropertyList<T> extends ArrayList<Property>
      * Returns an empty <code>PropertyList</code>
      */
     public PropertyList() {
-        super(new ArrayList<Property>());
+        super(new ArrayList<>());
     }
 
     

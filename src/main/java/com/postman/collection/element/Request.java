@@ -100,7 +100,7 @@ public class Request extends Item {
      */
     public void addResponse(Response resp)  {
         if (this.response == null) {
-            this.response = new ArrayList<Response>();
+            this.response = new ArrayList<>();
         }
         this.response.add(resp);
     }

@@ -83,7 +83,7 @@ public abstract class CollectionElement {
         JsonSchema schema;
 
         String strSchemaRoot = CollectionElement.getDefaultValidationSchema();
-        String strSubSchema = "";
+        String strSubSchema;
         switch (this.getClass().getSimpleName()) {
             case "Item": {
                 strSubSchema = "#/definitions/item";
@@ -133,24 +133,24 @@ public abstract class CollectionElement {
         schema.initializeValidators();
         Set<ValidationMessage> errors = schema.validate(pmcNode);
 
-        this.validationMessages = (errors == null || errors.size() == 0) ? new ArrayList<ValidationMessage>()
-                : new ArrayList<ValidationMessage>(errors);
+        this.validationMessages = (errors == null || errors.isEmpty()) ? new ArrayList<>()
+                : new ArrayList<>(errors);
                 boolean ignoreValidationErrors = true;
                 
                 
                 //This hackery necessitated by the fact that collections returned from Postman can have 'default' as the type
                 //for a value in the collection variables, which is not in the schema.
                 //So we ignore it as an error if it is present.  
-                String valMsg = "";
+                String valMsg;
                 String valPath = "";
                 for(ValidationMessage vm : this.validationMessages )
                 {
                     valMsg = vm.getMessage();
-                    valPath = vm.getPath();
+                    vm.getPath();
 
                     ignoreValidationErrors = ignoreValidationErrors && valMsg.contains("$.variable[") && valMsg.contains(".type: does not have a value in the enumeration [string, boolean, any, number]");
                 }
-        return ((this.validationMessages == null || this.validationMessages.size() == 0) || ignoreValidationErrors);
+        return ((this.validationMessages == null || this.validationMessages.isEmpty()) || ignoreValidationErrors);
 
     }
 
@@ -223,7 +223,7 @@ public abstract class CollectionElement {
      */
     public Collection getCollection() {
         CollectionElement result = null;
-        CollectionElement curItem = null;
+        CollectionElement curItem;
         // recursively traverse items looking for name == key
         if(this.getParent() == null) {
             return this instanceof Collection ? (Collection)this : null;

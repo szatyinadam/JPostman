@@ -37,7 +37,7 @@ public class ItemDeserializer implements JsonDeserializer<Item> {
     @Override
     public Item deserialize(JsonElement jElement, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jObject = jElement.getAsJsonObject();
-        Request newRequest = null;
+        Request newRequest;
         
         if(jObject.get("request") == null) {
             return context.deserialize(jElement.getAsJsonObject(), ItemGroup.class);

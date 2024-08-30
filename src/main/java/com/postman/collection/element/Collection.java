@@ -174,14 +174,12 @@ public class Collection extends ItemGroup {
      */
     public Request addRequest(String url) throws RecursiveItemAddException, IllegalPropertyAccessException, InvalidCollectionActionException, DuplicateVariableKeyException {
 
-        if(url == null || url.length() < 1) {
+        if(url == null || url.isEmpty()) {
             throw new InvalidCollectionActionException("Url must be a non-zero length string");
         }
 
-        Request newReq = this.addRequest(new RequestBody(HTTPRequestMethod.GET, url), "New Request");
-       
 
-        return newReq;
+        return this.addRequest(new RequestBody(HTTPRequestMethod.GET, url), "New Request");
 
     }
     
@@ -387,11 +385,11 @@ public class Collection extends ItemGroup {
         
         this.setParents();
         if(this.info == null) {
-            this.info = new HashMap<String, String>();
+            this.info = new HashMap<>();
         }
         if(this.getItems() == null) {
             //the item element is required by the Collection schema, even if it is empty
-            this.setItems(new ArrayList<Item>());
+            this.setItems(new ArrayList<>());
         }
         
     }
@@ -408,9 +406,9 @@ public class Collection extends ItemGroup {
     private void setParents() {
         ArrayList<Item> folders = this.getItems(ItemType.FOLDER);
         ArrayList<Item> requests = this.getItems(ItemType.REQUEST);
-        folders = folders == null ? new ArrayList<Item>() : folders;
-        requests = requests == null ? new ArrayList<Item>() : requests;
-        Item curParent = null;
+        folders = folders == null ? new ArrayList<>() : folders;
+        requests = requests == null ? new ArrayList<>() : requests;
+        Item curParent;
         folders.addAll(requests);
 
         for (Item curItem : folders) {
@@ -475,7 +473,7 @@ public class Collection extends ItemGroup {
      */
     public static Collection pmcFactory(File jsonFile) throws IOException {
 
-        String strChunk = "";
+        String strChunk;
         StringBuilder sbJson = new StringBuilder();
 
         try(FileReader fr = new FileReader(jsonFile);
@@ -597,7 +595,7 @@ public class Collection extends ItemGroup {
 
     
     /** 
-     * 
+     *
      * 
      * Set the value of this collections <code>info</code> object property with a populated Hash&#60;String&#62; containing the key-value pairs.  Note that 
      * the keys are not validated.
@@ -692,10 +690,6 @@ public class Collection extends ItemGroup {
         writer.write(this.toJson());
         
         }
-        catch(IOException e)
-        {
-            throw(e);
-        }
     }
     
     /*
@@ -739,8 +733,9 @@ public class Collection extends ItemGroup {
         HttpRequest request = null;    
         if(this.getPostmanID() == null) {
             //In this case we are creating
-            if(workspaceID != null && workspaceID.getID().length() > 0) 
+            if (workspaceID != null && !workspaceID.getID().isEmpty()) {
                 apiURL = apiURL + "?workspace=" + workspaceID.getID();
+            }
 
             request = HttpRequest.newBuilder(
                 URI.create(apiURL))
@@ -773,7 +768,7 @@ public class Collection extends ItemGroup {
             
             Type hashType = new TypeToken<HashMap<String,HashMap<String, String>>>() {}.getType();  
             HashMap<String, HashMap<String, String>> respJSON = customGson.fromJson(response.body(), hashType);
-            this.setPostmanID(respJSON.get("collection").get("id").toString());
+            this.setPostmanID(respJSON.get("collection").get("id"));
             
             }
             else if(response.statusCode() == 404) {
@@ -923,7 +918,7 @@ public class Collection extends ItemGroup {
      */
     public void addVariable(Property varNew) {
         if(this.variable == null) {
-            this.variable = new PropertyList<Property>();
+            this.variable = new PropertyList<>();
         }
         this.variable.add(varNew);
     }
@@ -985,7 +980,7 @@ public class Collection extends ItemGroup {
             return;
         }
         if(this.variable == null) {
-            this.variable = new PropertyList<Property>();
+            this.variable = new PropertyList<>();
         }
         this.variable.addAll(newVars);
     }   

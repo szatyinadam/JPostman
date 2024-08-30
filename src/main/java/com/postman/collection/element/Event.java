@@ -148,7 +148,7 @@ public class Event extends CollectionElement {
         if(this.getScript() == null || this.getScript().getSourceCode() == null) {
             return null;
         }
-        String chunk = "";
+        String chunk;
         for(int i = 0; i < this.getScript().getSourceCode().size(); i++) {
             
             chunk = this.getScript().getSourceCodeElement(i);
@@ -241,7 +241,7 @@ public class Event extends CollectionElement {
     }
 
     public class PostmanScript extends CollectionElement {
-        private String type = "";
+        private String type;
         private ArrayList<String> exec;
 
         public PostmanScript(String scriptType, ArrayList<String> sourceCode) {
@@ -250,7 +250,7 @@ public class Event extends CollectionElement {
         }
 
         public PostmanScript(String scriptType, String sourceCode) {
-            this.exec = new ArrayList<String>();
+            this.exec = new ArrayList<>();
             this.exec.add(sourceCode);
             this.type = scriptType;
 
@@ -259,7 +259,7 @@ public class Event extends CollectionElement {
         public void addSourceCodeElement(String code, int position) {
             if(this.getSourceCode() == null || position < 0 || position > this.getSourceCode().size())
             {
-                this.exec = new ArrayList<String>();
+                this.exec = new ArrayList<>();
                 this.exec.add(code);
             }
             else {

@@ -29,9 +29,9 @@ public class PropertyDeserializer implements JsonDeserializer<Property> {
     public Property deserialize(JsonElement jElement, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         
         
-        Property pvVar = null;
+        Property pvVar;
         JsonObject jObj = jElement.getAsJsonObject();
-        String curVal = "";
+        String curVal;
         
 
             curVal = jObj.get("value") == null || jObj.get("value").isJsonNull() ? null : jObj.get("value").getAsString();

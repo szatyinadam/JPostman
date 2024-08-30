@@ -1,14 +1,9 @@
 package com.postman.collection.adapter;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonSerializer;
-import com.google.gson.JsonSerializationContext;
+import com.google.gson.*;
 import com.postman.collection.element.Property;
 
 import java.lang.reflect.Type;
-import java.util.Iterator;
 import java.util.HashMap;
 
 
@@ -27,10 +22,9 @@ public class PropertyListSerializer implements JsonSerializer<HashMap<String, Pr
         JsonArray varArray = new JsonArray();
         JsonObject varElement;
         String curKey;
-        Property curVar = null;
-        Iterator<String> keys = src.keySet().iterator();
-        while (keys.hasNext()) {
-            curKey = keys.next();
+        Property curVar;
+        for (String s : src.keySet()) {
+            curKey = s;
             varElement = new JsonObject();
             curVar = src.get(curKey);
             varElement.addProperty("key", curVar.getKey());

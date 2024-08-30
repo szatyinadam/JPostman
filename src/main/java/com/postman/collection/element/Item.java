@@ -216,9 +216,9 @@ public abstract class Item extends CollectionElement {
         if (event == null) {
             return null;
         }
-        for (int i = 0; i < event.size(); i++) {
-            if (event.get(i).getEventType() == evtType) {
-                return event.get(i);
+        for (Event value : event) {
+            if (value.getEventType() == evtType) {
+                return value;
             }
         }
         return null;
@@ -275,7 +275,7 @@ public abstract class Item extends CollectionElement {
      */
     private void addEvent(Event newEvent) {
         if (event == null) {
-            event = new ArrayList<Event>();
+            event = new ArrayList<>();
         }
         if (this.getEvent(newEvent.getEventType()) == null) {
             event.add(newEvent);

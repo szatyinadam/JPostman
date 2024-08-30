@@ -51,4 +51,4 @@ public class AuthSerializer implements JsonSerializer<RequestAuth> {
         return jsonAuth;
 
     }
-};
+}

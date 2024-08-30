@@ -1,13 +1,5 @@
 package com.postman.collection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 
 
@@ -36,12 +28,14 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static org.junit.Assert.*;
+
 /**
  * Unit test for simple App.
  */
 public class AppTest {
     String filePath = new java.io.File("").getAbsolutePath();
-    String resourcePath = "/src/main/resources/com/postman/collection";
+    final String resourcePath = "/src/main/resources/com/postman/collection";
     Collection pmcTest = null;
     String collectionOutputPath;
 
@@ -83,7 +77,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             
         } catch (Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
 
     }
@@ -106,7 +100,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
 
             
             folder.setPreRequestScript("//PRE-REQUEST this is some source code for the folder");
-            event = new Event(EventType.TEST, "//TEST this is some source code for the folder");
+            new Event(EventType.TEST, "//TEST this is some source code for the folder");
             folder.setTestScript("//TEST this is some source code for the folder");
             pmcTest.addItem(folder);
 
@@ -126,7 +120,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
 
         } catch (Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
 
     }
@@ -137,7 +131,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
      * @param methodName
      */
     public void printValidationMessages(ArrayList<ValidationMessage> msgs, String methodName) {
-        if (msgs != null && msgs.size() > 0) {
+        if (msgs != null && !msgs.isEmpty()) {
             for (ValidationMessage msg : msgs) {
                 System.out.println("VALIDATION ERROR [" + methodName + "] output file: [" + collectionOutputPath + "]: "
                         + msg.getMessage());
@@ -157,7 +151,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
 
         } catch (Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
 
     }
@@ -165,7 +159,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
     @Test
     public void shouldCreateURLs() {
 
-        List<Url> liUrls = new ArrayList<Url>(Arrays.asList(new Url[0]));
+        List<Url> liUrls = new ArrayList<>();
         try {
 
             liUrls.add(new Url("http://foo.com/bar/bat.json"));
@@ -189,14 +183,14 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
                     
                 } catch (Exception e) {
                     e.printStackTrace();
-                    assertTrue(false);
+                    fail();
                 }
 
             }
             validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         } catch (Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
 
         /*
@@ -212,7 +206,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
 
         } catch (Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
 
     }
@@ -258,7 +252,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             }
             catch(ValidationException e)
             {
-                assertTrue("Error validating " + curPath,false);
+                fail("Error validating " + curPath);
             }
             /*
             for(int i = 0; i<diffs.size(); i++)
@@ -279,7 +273,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
 validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         } catch (Exception e) {
             e.printStackTrace();
-            assertTrue(false);
+            fail();
         }
 
     }
@@ -302,10 +296,10 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             
         }
         catch(IOException e) {
-            assertTrue("Unexpected IOEXception: " + e.getMessage(), false);
+            fail("Unexpected IOEXception: " + e.getMessage());
         }
         catch(IllegalPropertyAccessException a) {
-            assertTrue("Unexpected IllegalPropertyAccessException: " + a.getMessage(), false);
+            fail("Unexpected IllegalPropertyAccessException: " + a.getMessage());
         }
         
 
@@ -491,7 +485,6 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             // Not sure whether we want to include this exception in the actual
             // implementation tho.
             if (msgs.size() == 1 && msgs.get(0).getMessage().equals("$.item: is missing but it is required")) {
-                valid = true;
             }
             printValidationMessages(msgs, new Throwable().getStackTrace()[0].getMethodName());
 
@@ -546,7 +539,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
      * @return HashMap<String, String>
      */
     public HashMap<String, String> getOutputFileAndCollectionName(Collection pmcTest, String methodName) {
-        HashMap<String, String> retVal = new HashMap<String, String>();
+        HashMap<String, String> retVal = new HashMap<>();
         retVal.put("collection-name", "TEST-" + methodName);
         retVal.put("output-path",
                 filePath + "/test-output/" + retVal.get("collection-name") + ".postman_collection.json");
@@ -591,9 +584,8 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
 
         pmcTest2 = Collection.pmcFactory(new File(
                 filePath + "/src/main/resources/com/postman/collection/body-test-diff.postman_collection.json"));
-        diffs = pmcTest.isEquivalentTo(pmcTest2);
-        
-        
+        pmcTest.isEquivalentTo(pmcTest2);
+
 
         body = new BodyElement(RequestBodyMode.FORMDATA);
         body.setFormdata("field-1", "value 1", "This is value 1");
@@ -742,7 +734,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             }
             catch(IllegalPropertyAccessException e)
             {
-                assertTrue(false);
+                fail();
             }
 
             
@@ -751,7 +743,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             }
             catch(IllegalPropertyAccessException e)
             {
-                assertTrue("Unexpected IllegalPropertyAccessException ", false);
+                fail("Unexpected IllegalPropertyAccessException ");
             }
             
             
@@ -761,7 +753,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             }
             catch(IllegalPropertyAccessException e)
             {
-                assertTrue("Unexpected IllegalPropertyAccessException ", false);
+                fail("Unexpected IllegalPropertyAccessException ");
             }
             
             
@@ -846,7 +838,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             }
             catch(Exception e)
             {
-                assertTrue("Exception " + e.getMessage(), false);
+                fail("Exception " + e.getMessage());
             }
 
             body = new BodyElement(RequestBodyMode.RAW);
@@ -859,7 +851,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             catch(Exception e)
             {
                 System.out.println(e);
-                assertTrue(false);
+                fail();
             }
 
             body.setMode(RequestBodyMode.FORMDATA);
@@ -886,7 +878,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         }
         catch(DuplicateVariableKeyException e)
         {
-            assertTrue("Unexpected duplicate key: " + e.getMessage(), false);
+            fail("Unexpected duplicate key: " + e.getMessage());
         }
         
 
@@ -901,7 +893,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         
         catch(DuplicateVariableKeyException e)
         {
-            assertTrue("Unexpected duplicate key: " + e.getMessage(), false);
+            fail("Unexpected duplicate key: " + e.getMessage());
         }
         assertEquals(4, url.getPaths().size());
         assertEquals(1, url.getPathVariables().size());
@@ -911,7 +903,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         
 
 
-        ArrayList<String> urls = new ArrayList<String>();
+        ArrayList<String> urls = new ArrayList<>();
         urls.add("");
         urls.add("http://foo.com/bar/bat.json");
         urls.add("//foo.com/bar/bat.json");
@@ -924,14 +916,14 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         urls.add("{{baseUrl}}/foo.com:8080/bar/:path1/bat.json?foo=1&bar=");
         urls.add("https://foo.com:8080/bar/:path1/bat.json?foo=1&bar=");
         urls.add("https://foo.com/bar/:path1/bat.json?foo=1&bar=");
-        ArrayList<Url> liUrls = new ArrayList<Url>();
+        ArrayList<Url> liUrls = new ArrayList<>();
 
     for(String curUrl: urls) {
         try {
             liUrls.add(new Url(curUrl));
         }
         catch(DuplicateVariableKeyException e) {
-            assertTrue("Unexpected duplicate key: " + e.getMessage(), false);
+            fail("Unexpected duplicate key: " + e.getMessage());
         }
     }
     for(int i = 0; i < liUrls.size(); i++){
@@ -949,7 +941,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         catch(Exception e)
         {
             //System.out.println("URL: " + i);
-            assertTrue(urls.get(i) + " failed", false);
+            fail(urls.get(i) + " failed");
         }
     }
     try {
@@ -957,7 +949,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
     }
     
     catch(DuplicateVariableKeyException e) {
-        assertTrue("Unexpected duplicate key: " + e.getMessage(), false);
+        fail("Unexpected duplicate key: " + e.getMessage());
     }
     assertEquals(2, url.getQueryElements().size());
     assertEquals("var1=val1&var2=val2", url.getQueryString());
@@ -968,18 +960,17 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
 
     }
     
-    /** 
-     * @throws MalformedURLException
+    /**
      */
     @Test
-    public void testIngestFromUrl() throws MalformedURLException {
+    public void testIngestFromUrl() {
         //Good URL
         try {
             pmcTest = Collection.pmcFactory(new URL("https://api.getpostman.com/collections/23889826-2e2dc1e1-24a9-4167-a550-1167ee1aa389"));
             assertTrue("Valid collection ingested from URL",pmcTest.validate());
         }
         catch(Exception e) {
-            assertTrue("Unexpected " + e.getClass().getName() +": " + e.getMessage(),false);
+            fail("Unexpected " + e.getClass().getName() + ": " + e.getMessage());
         }
         //Good URL, bad COllection ID
 //        try {
@@ -1001,7 +992,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         }
         catch(DuplicateVariableKeyException e)
         {
-            assertTrue("Unexpected duplicate path key" + e.getMessage(), false);
+            fail("Unexpected duplicate path key" + e.getMessage());
         }
         Response resp = new Response("Test Response",req, "OK",200,"This is the body" );
         assertEquals("This is the body", resp.getBody());
@@ -1012,17 +1003,17 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         }
         catch(Exception e)
         {
-            assertTrue("Equivalence test exception",false);
+            fail("Equivalence test exception");
         }
 
-        resp = new Response("Test Response",req, "Not authorize",401,"A completely different body" );
+        new Response("Test Response", req, "Not authorize", 401, "A completely different body");
         RequestBody req2 = null;
         try {
             req2 = new RequestBody(HTTPRequestMethod.POST, "https://cnn.com");
         }
         catch(DuplicateVariableKeyException e)
         {
-            assertTrue("Unexpected duplicate path key" + e.getMessage(), false);
+            fail("Unexpected duplicate path key" + e.getMessage());
         }
         
         
@@ -1030,11 +1021,11 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
                 
         try {
                     JsonNode diffs = newResp.getOriginalRequest().isEquivalentTo(req);
-                    assertTrue(diffs.size() > 0);
+                    assertTrue(!diffs.isEmpty());
         }
         catch(Exception e)
         {
-            assertTrue("Equivalence test exception",false);
+            fail("Equivalence test exception");
         }
 
         
@@ -1058,7 +1049,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             evt.removeSourceCodeElement(0);
         }
         catch(Exception e) {
-            assertTrue("Unexpected excpetion", false);
+            fail("Unexpected excpetion");
         }
 
         assertEquals(1, evt.getSourceCodeElements().size());
@@ -1067,7 +1058,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         }
         catch(InvalidPropertyException e)
          {
-            assertTrue("Unexpected exception",false);
+             fail("Unexpected exception");
          }
         
 
@@ -1086,7 +1077,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             evt.removeSourceCodeElement(0);
         }
         catch(Exception e) {
-            assertTrue("Unexpected exception " + e.getMessage(), false);
+            fail("Unexpected exception " + e.getMessage());
         }
 
         
@@ -1095,24 +1086,25 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
     
     
     
-    /** 
+    /**
      * @throws Exception
      */
+    @Test
     public void testItem() throws Exception{
-        
+
         pmcTest = Collection.pmcFactory(new java.io.File(filePath + "/src/main/resources/com/postman/collection/example-cat-facts-with-tests.postman_collection.json"));
-        
-        
+
+
         Item fact = pmcTest.getItem("Get a list of facts");
         Folder folder = pmcTest.getFolder("get Breeds");
         assertNotNull(fact);
         assertNotNull(folder);
-        
+
         assertTrue(fact != null || fact.getName().equals("Get a list of facts"));
         assertTrue(folder != null || folder.getName().equals("Breeds"));
 
         pmcTest = Collection.pmcFactory(new java.io.File(filePath + "/src/main/resources/com/postman/collection/example-catfact.postman_collection.json"));
-        
+
         ArrayList<Item> folders = pmcTest.getItems(ItemType.FOLDER);
         assertEquals(2, folders.size());
         ArrayList<Item> requests = pmcTest.getItems(ItemType.REQUEST);
@@ -1136,7 +1128,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         RequestBody req = null;
         Item reqItem1 = null;
         //generates spurious "not used" warning
-        Item reqItem2 = null;
+        Item reqItem2;
         Folder newFolder = null;
 
         try {
@@ -1144,7 +1136,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         }
         catch(DuplicateVariableKeyException e)
         {
-            assertTrue("Unexpected duplicate key: " + e.getMessage(), false);
+            fail("Unexpected duplicate key: " + e.getMessage());
         }
         
         
@@ -1152,7 +1144,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         reqItem1 = pmcTest.addRequest(req, "GET echo");
        } 
        catch(Exception e){
-        assertTrue("Unexpected exception " + e.getMessage(), false);
+           fail("Unexpected exception " + e.getMessage());
        }
         
        try {
@@ -1160,14 +1152,14 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
     }
     catch(DuplicateVariableKeyException e)
     {
-        assertTrue("Unexpected duplicate key: " + e.getMessage(), false);
+        fail("Unexpected duplicate key: " + e.getMessage());
     }
     Request reqItem3 = null;
     try {
        reqItem3 = pmcTest.addRequest("https://postman-echo.com/get");
     }
     catch (Exception e) {
-        assertTrue("Exception adding collection", false);
+        fail("Exception adding collection");
     }
     
     assertEquals(reqItem3.getRequestBody().getUrl().getRaw(), "https://postman-echo.com/get");
@@ -1176,7 +1168,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         reqItem3 = pmcTest.addRequest("https://postman-echo.com/get?foo=bar&bat={{boo}}");
     }
     catch(Exception e) {
-        assertTrue("Exception adding collection", false);
+        fail("Exception adding collection");
     }
 
     assertEquals(reqItem3.getRequestBody().getUrl().getRaw(), "https://postman-echo.com/get?foo=bar&bat={{boo}}");
@@ -1187,7 +1179,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         reqItem3 = pmcTest.addRequest("https://postman-echo.com/:pathvar1/get?foo=bar&bat={{boo}}");
     }
     catch(Exception e) {
-        assertTrue("Exception adding collection", false);
+        fail("Exception adding collection");
     }
 
     assertEquals(reqItem3.getRequestBody().getUrl().getRaw(), "https://postman-echo.com/:pathvar1/get?foo=bar&bat={{boo}}");
@@ -1206,7 +1198,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         assertNotNull(reqItem2);
        } 
        catch(Exception e){
-        assertTrue("Unexpected exception " + e.getMessage(), false);
+           fail("Unexpected exception " + e.getMessage());
        }
 
        
@@ -1219,7 +1211,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
        }
        catch(Exception e)
        {
-        assertTrue("Unexpected exception: " + e.getMessage(), false);
+           fail("Unexpected exception: " + e.getMessage());
        }
        
        try {
@@ -1229,7 +1221,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
        }
        catch(Exception e)
        {
-        assertTrue("Unexpected exception: " + e.getMessage(), false);
+           fail("Unexpected exception: " + e.getMessage());
        }
        
 
@@ -1244,13 +1236,13 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
 
        //Should trigger duplicate variable key exception
        try {
-           reqItem3 = pmcTest.addRequest("https://postman-echo.com/:pathvar1/:pathvar1/get?foo=bar&bat={{boo}}");
+           pmcTest.addRequest("https://postman-echo.com/:pathvar1/:pathvar1/get?foo=bar&bat={{boo}}");
        }
        catch(DuplicateVariableKeyException e) {
             assertTrue("Duplicate variable key exception expected", true);
        }
        catch(Exception e) {
-        assertTrue("Unexpected exception: " + e.getMessage(), false);
+           fail("Unexpected exception: " + e.getMessage());
        }
 
 
@@ -1268,9 +1260,9 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         pmcTest.setName("TEST Request Operations");
 
         RequestBody req;
-        Item reqItem1 = null;
-        Item reqItem2 = null;
-        Folder newFolder = null;
+        Item reqItem1;
+        Item reqItem2;
+        Folder newFolder;
 
         try {
             
@@ -1289,7 +1281,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             assertEquals(0, pmcTest.getItems(ItemType.FOLDER).size());
         }
         catch(Exception e) {
-            assertTrue("Unexpected exception: " + e.getMessage(), false);
+            fail("Unexpected exception: " + e.getMessage());
         }
         
 
@@ -1315,7 +1307,7 @@ validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
             pmcTest = Collection.pmcFactory(new PostmanID("23889826-a0a8f60c-36c9-4221-9c99-3aa90eb46abe"));
         }
         catch(Exception e) {
-            assertTrue("Unexpected exception: " + e.getMessage(), false);
+            fail("Unexpected exception: " + e.getMessage());
         }
         validateAndWriteToFile(pmcTest, new Throwable().getStackTrace()[0]);
         
@@ -1341,14 +1333,14 @@ public boolean validateAndWriteToFile(Collection pmcColl, StackTraceElement test
         System.out.println("Wrote to " + collectionOutputPath);
     }
     catch(IOException i) {
-        assertTrue("IOException writing to file: [" + testMethodInfo.getMethodName() +":" + testMethodInfo.getLineNumber() + "]: " + i.getMessage(), false);
+        fail("IOException writing to file: [" + testMethodInfo.getMethodName() + ":" + testMethodInfo.getLineNumber() + "]: " + i.getMessage());
     }
 
     try {
         valid = pmcColl.validate();
     }
     catch(ValidationException e) {
-        assertTrue("Validation exception [" + testMethodInfo.getMethodName() +":" + testMethodInfo.getLineNumber() + "]: " + e.getMessage(), false);
+        fail("Validation exception [" + testMethodInfo.getMethodName() + ":" + testMethodInfo.getLineNumber() + "]: " + e.getMessage());
     }
     
     
@@ -1378,7 +1370,7 @@ boolean deleteDirectory(File directoryToBeDeleted) {
 
 @Test
 public void testVariableResolution() {
-    List<Url> liUrls = new ArrayList<Url>(Arrays.asList(new Url[0]));
+    List<Url> liUrls = new ArrayList<>();
     String url;
     try {
 
@@ -1403,7 +1395,7 @@ public void testVariableResolution() {
                 
             } catch (Exception e) {
                 e.printStackTrace();
-                assertTrue(false);
+                fail();
             }
         }
         
@@ -1441,8 +1433,8 @@ public void testProperty() {
     assertEquals(var1, var3);
 
 
-    PropertyList<Property> alVars = new PropertyList<Property>();
-    boolean added = false;
+    PropertyList<Property> alVars = new PropertyList<>();
+    boolean added;
     added = alVars.add(var1);
     assertTrue(added);
     added = alVars.add(var2);
@@ -1451,7 +1443,7 @@ public void testProperty() {
     assertTrue(added);
 
 
-    PropertyList<Property> vlMap = new PropertyList<Property>(alVars);
+    PropertyList<Property> vlMap = new PropertyList<>(alVars);
     vlMap.addAll(alVars);
     vlMap.set(2, new Property("var1", "newvalue"));
     try {
@@ -1488,11 +1480,11 @@ public void testProperty() {
     public void testParentChain() {
 
         
-        RequestBody req = null;
-        CollectionElement parent = null;
-        Collection col = null;
-        Folder folder = null;
-        Request reqObj = null;
+        RequestBody req;
+        CollectionElement parent;
+        Collection col;
+        Folder folder;
+        Request reqObj;
         try {
             req = new RequestBody(HTTPRequestMethod.GET, "https://foo.com/bar/bat.json");
             parent = req.getParent();
@@ -1510,12 +1502,12 @@ public void testProperty() {
             folder = pmcTest.addFolder("Folder 1");
             pmcTest.moveItem(reqObj, folder);
             assertNotNull(reqObj.getParent());
-            assertEquals("Folder 1", ((Item)reqObj).getParent().getName());
+            assertEquals("Folder 1", reqObj.getParent().getName());
             assertEquals("TEST parent chain", reqObj.getCollection().getName());
 
         }
         catch(Exception e) {
-            assertTrue("Unexpected exception: " + e.getMessage(), false);
+            fail("Unexpected exception: " + e.getMessage());
         }
 
 
@@ -1530,10 +1522,9 @@ public void testProperty() {
     @Test
     public void testWriteToPostman() {
         Collection pmcTest = Collection.pmcFactory();
-        Collection pmcTest2 = null;
-        BodyElement body = null;
-        RequestBody req = null;
-        Response resp = null;
+        BodyElement body;
+        RequestBody req;
+        Response resp;
         String colName = new java.sql.Timestamp(System.currentTimeMillis()).toString();
         //Test creating a new collection
         try {
@@ -1549,7 +1540,7 @@ public void testProperty() {
         }
         catch(Exception eee) {
             eee.printStackTrace();
-            assertTrue("Exception creating test collection: " + eee.getMessage(), false);
+            fail("Exception creating test collection: " + eee.getMessage());
         }
         
         try {
@@ -1559,7 +1550,7 @@ public void testProperty() {
         }
         catch(Exception e) {
             e.printStackTrace();
-            assertTrue("Exception upserting new collection to Postman: " + e.getMessage(), false);
+            fail("Exception upserting new collection to Postman: " + e.getMessage());
         }
 
         //Upsert a collection to a workspace
@@ -1577,7 +1568,7 @@ public void testProperty() {
         }
         catch(Exception eee) {
             eee.printStackTrace();
-            assertTrue("Exception creating test collection: " + eee.getMessage(), false);
+            fail("Exception creating test collection: " + eee.getMessage());
         }
 
         //Fetch a known collection from Postman, change the name, then Upsert it
@@ -1588,11 +1579,11 @@ public void testProperty() {
         pmcTest.setName(origName + "- UPSERTED");
         pmcTest.upsertToPostman(null);
         pmcTest    = Collection.pmcFactory(new PostmanID("23889826-169dff8a-c684-4ccc-b8df-7ad436efda57"));
-        assertTrue(pmcTest.getName().equals(origName + "- UPSERTED"));
+           assertEquals(pmcTest.getName(), origName + "- UPSERTED");
        }
        catch(Exception ee) {
         ee.printStackTrace();
-        assertTrue("Exception writing known collection: " + ee.getMessage(), false);
+           fail("Exception writing known collection: " + ee.getMessage());
        }
 
 
@@ -1604,7 +1595,7 @@ public void testProperty() {
         }
         catch(Exception e)
         {
-            assertTrue("IOException: " + e.getMessage(), false);
+            fail("IOException: " + e.getMessage());
         }
 
         

@@ -13,7 +13,7 @@ package com.postman.collection.element;
 
 
 public class PostmanID {
-    private String ID;
+    private final String ID;
     public PostmanID(String ID) {
         this.ID = ID;
     }

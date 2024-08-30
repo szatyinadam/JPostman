@@ -174,7 +174,7 @@ public class RequestAuth extends CollectionElement {
      */
     public void setAuthType(AuthType type) {
         this.type = arrTypes[(type.ordinal())];
-        PropertyList<Property> newProps = new PropertyList<Property>();
+        PropertyList<Property> newProps = new PropertyList<>();
         switch (type) {
             case AKAMAI: {
                 newProps.add(new Property("headersToSign", null));
@@ -332,7 +332,7 @@ public class RequestAuth extends CollectionElement {
      */
     public void addProperty(Property newElement)  {
         if(this.properties == null) {
-            this.properties = new PropertyList<Property>();
+            this.properties = new PropertyList<>();
         }
         this.properties.add(newElement);
     }
@@ -365,7 +365,7 @@ public class RequestAuth extends CollectionElement {
      */
     public void addProperty(String key, String value)  {
         if(this.properties == null) {
-            this.properties = new PropertyList<Property>();
+            this.properties = new PropertyList<>();
         }
         this.addProperty(new Property(key, value));
 

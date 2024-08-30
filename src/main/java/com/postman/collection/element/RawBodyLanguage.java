@@ -8,5 +8,5 @@ package com.postman.collection.element;
  * 
  */
 public enum RawBodyLanguage {
-    TEXT,JAVASCRIPT,JSON,HTML,XML,GRAPHQL;
+    TEXT,JAVASCRIPT,JSON,HTML,XML,GRAPHQL
 }

@@ -11,10 +11,10 @@ package com.postman.collection.element;
  * 
  */
 public class Property extends CollectionElement {
-    private String key = "";
-    private String value = "";
+    private String key;
+    private String value;
     private String description;
-    private String type = "string";
+    private String type;
 
     
     /** 

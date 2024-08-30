@@ -55,13 +55,13 @@ The response object includes a RequestBody object describing the original reques
  * 
  */
 public class Response extends CollectionElement {
-    private String name = "";
-    private RequestBody originalRequest = null;
+    private String name;
+    private RequestBody originalRequest;
     private int code;
     private String status;
     private String _postman_previewlanguage = "";
     private ArrayList<Cookie> cookie = null;
-    private String body = "";
+    private String body;
     private PropertyList<Property> header;
 
     public Response(String name, RequestBody originalRequest, int code, String status,

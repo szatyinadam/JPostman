@@ -304,7 +304,7 @@ public class BodyElement extends CollectionElement {
         {
             return null;
         }
-        HashMap<String,String> retVal = new HashMap<String,String>();
+        HashMap<String,String> retVal = new HashMap<>();
         retVal.put("query",this.graphql.getRawQueryString());
         retVal.put("variables",this.graphql.getVariables());
         return retVal;
@@ -546,7 +546,7 @@ public class BodyElement extends CollectionElement {
             case FORMDATA:
                 this.mode = "formdata";
                 this.file = null;
-                this.formdata = new PropertyList<Property>();
+                this.formdata = new PropertyList<>();
                 this.urlencoded = null;
                 this.graphql = null;
                 this.options = null;
@@ -555,7 +555,7 @@ public class BodyElement extends CollectionElement {
                 this.mode = "urlencoded";
                 this.file = null;
                 this.formdata = null;
-                this.urlencoded = new PropertyList<Property>();
+                this.urlencoded = new PropertyList<>();
                 this.graphql = null;
                 this.options = null;
                 break;

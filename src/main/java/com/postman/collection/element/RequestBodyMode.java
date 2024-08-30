@@ -11,5 +11,5 @@ package com.postman.collection.element;
  * 
  */
 public enum RequestBodyMode {
-    TEXT,FORMDATA,RAW,FILE,GRAPHQL,URLENCODED;
+    TEXT,FORMDATA,RAW,FILE,GRAPHQL,URLENCODED
 }

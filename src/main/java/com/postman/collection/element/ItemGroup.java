@@ -44,7 +44,7 @@ public abstract class ItemGroup extends Item {
      * @return
      */
     public ArrayList<Item> getItems(ItemType filter) {
-        ArrayList<Item> results = new ArrayList<Item>();
+        ArrayList<Item> results = new ArrayList<>();
 
         if (item == null) {
             return null;
@@ -133,7 +133,7 @@ public abstract class ItemGroup extends Item {
                 if (filter != null && (filter == ItemType.REQUEST) && curItem instanceof Request) {
                     result = curItem;
                 } else if(filter != null && filter == ItemType.FOLDER &&  curItem instanceof Folder) {
-                    result = (Item)curItem;
+                    result = curItem;
                 }
                 break;
             } else if (curItem instanceof ItemGroup) {
@@ -156,7 +156,7 @@ public abstract class ItemGroup extends Item {
      */
     public void addItems(ArrayList<Item> newItems) throws RecursiveItemAddException, IllegalPropertyAccessException {
         if (this.item == null) {
-            this.item = new ArrayList<Item>();
+            this.item = new ArrayList<>();
         }
         for(Item curItem : newItems) {
             this.addItem(curItem);
@@ -176,9 +176,9 @@ public abstract class ItemGroup extends Item {
             return false;
         }
         for (Item curItem : item) {
-            if (curItem.equals(theItem))
-                ;
-            return true;
+            if (curItem.equals(theItem)) {
+                return true;
+            }
         }
 
         return false;
@@ -199,7 +199,7 @@ public abstract class ItemGroup extends Item {
         }
         
         if (this.item == null) {
-            this.item = new ArrayList<Item>();
+            this.item = new ArrayList<>();
         }
         newItem.setParent(this);
         this.item.add(newItem);
@@ -225,7 +225,7 @@ public abstract class ItemGroup extends Item {
      */
     public void addItem(Item newItem, int position) throws IllegalPropertyAccessException, RecursiveItemAddException {
         if(this.item == null) {
-            this.item = new ArrayList<Item>();
+            this.item = new ArrayList<>();
         }
         if (this.hasItem(newItem)) {
             throw new IllegalPropertyAccessException("Item is already present");
