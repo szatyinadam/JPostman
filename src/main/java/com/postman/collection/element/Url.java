@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 import com.postman.collection.exception.DuplicateVariableKeyException;
 import com.postman.collection.exception.IllegalPropertyAccessException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Class to encapsulate the properties in the <code>url</code> object of a {@link com.postman.collection.RequestBody} object.  
+ * Class to encapsulate the properties in the <code>url</code> object of a {@link RequestBody} object.
  * 
  * <p>Postman SDK Analog: <code><a href="http://www.postmanlabs.com/postman-collection/Url.html">Url</a></code>.</p>
  * 
@@ -437,9 +437,9 @@ public class Url extends CollectionElement {
     
     /** 
      * 
-     * Return an ArrayList&#60;{@link com.postman.collection.Property Property}&#62; of key value pairs comprising the <code>query</code> array
+     * Return an ArrayList&#60;{@link com.postman.collection.element.Property Property}&#62; of key value pairs comprising the <code>query</code> array
      * 
-     * @return ArrayList&#60;{@link com.postman.collection.Property Property}&#62; containing the key value paris
+     * @return ArrayList&#60;{@link com.postman.collection.element.Property Property}&#62; containing the key value paris
      */
     public PropertyList<Property> getQueryElements() {
         return query;
@@ -537,7 +537,7 @@ public class Url extends CollectionElement {
     
     /** 
      * 
-     * Set the contents of the <code>query</code> array with a pre-populated ArrayList&#60;{@link com.postman.collection.Property Property}&#62; containing the key value pairs
+     * Set the contents of the <code>query</code> array with a pre-populated ArrayList&#60;{@link com.postman.collection.element.Property Property}&#62; containing the key value pairs
      * 
      * @param query
      */
@@ -548,9 +548,9 @@ public class Url extends CollectionElement {
     
     /** 
      * 
-     * Get an ArrayList&#60;{@link com.postman.collection.Property Property}&#62; containing the key-value pairs comprising the <code>variable</code> array, or null if none exit.
+     * Get an ArrayList&#60;{@link com.postman.collection.element.Property Property}&#62; containing the key-value pairs comprising the <code>variable</code> array, or null if none exit.
      * 
-     * @return ArrayList&#60;{@link com.postman.collection.Property Property}&#62; The ArrayList containing the key-value pairs, or null if there are none.
+     * @return ArrayList&#60;{@link com.postman.collection.element.Property Property}&#62; The ArrayList containing the key-value pairs, or null if there are none.
      */
     public PropertyList<Property> getPathVariables() {
         return variable;
@@ -576,9 +576,9 @@ public class Url extends CollectionElement {
     
     /** 
      * 
-     * Set the values of the <code>variable</code> array with a pre-populated ArrayList&#60;{@link com.postman.collection.Property Property}&#62; containing the key-value paris
+     * Set the values of the <code>variable</code> array with a pre-populated ArrayList&#60;{@link com.postman.collection.element.Property Property}&#62; containing the key-value paris
      * 
-     * @param variable the ArrayList&#60;{@link com.postman.collection.Property Property}&#62; containing the key-value paris
+     * @param variable the ArrayList&#60;{@link com.postman.collection.element.Property Property}&#62; containing the key-value paris
      */
     public void setPathVariables(PropertyList<Property> variable) {
         this.variable = variable;

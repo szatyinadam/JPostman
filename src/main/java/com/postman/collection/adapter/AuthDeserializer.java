@@ -1,12 +1,14 @@
 package com.postman.collection.adapter;
 
-import com.postman.collection.*;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonDeserializer;
+import com.postman.collection.element.Property;
+import com.postman.collection.element.RequestAuth;
+
 import java.lang.reflect.Type;
 /**
  * 
@@ -24,13 +26,13 @@ public class AuthDeserializer implements JsonDeserializer<RequestAuth> {
      * 
      * Custom <a href=
      * "https://www.javadoc.io/doc/com.google.code.gson/gson/2.6.2/com/google/gson/JsonDeserializer.html">
-     * GSON deserializer</a> for the {@link com.postman.collection.RequestAuth} object.
+     * GSON deserializer</a> for the {@link RequestAuth} object.
      * 
      * 
      * @param jElement The JSON element passed in by Gson
-     * @param typeOfT The type for the adapter, {@link com.postman.collection.RequestAuth}
+     * @param typeOfT The type for the adapter, {@link RequestAuth}
      * @param context Deserialization context
-     * @return {@link com.postman.collection.RequestAuth} The assembed {@link com.postman.collection.RequestAuth} object 
+     * @return {@link RequestAuth} The assembed {@link RequestAuth} object
      * @throws JsonParseException IF there are errors in the JSON element
      */
     @Override

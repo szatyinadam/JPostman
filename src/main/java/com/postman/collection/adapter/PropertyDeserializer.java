@@ -1,11 +1,13 @@
 package com.postman.collection.adapter;
 
-import com.postman.collection.*;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonDeserializer;
+import com.postman.collection.element.Property;
+import com.postman.collection.element.RequestAuth;
+
 import java.lang.reflect.Type;
 
 public class PropertyDeserializer implements JsonDeserializer<Property> {
@@ -14,7 +16,7 @@ public class PropertyDeserializer implements JsonDeserializer<Property> {
      * 
      * Custom <a href=
      * "https://www.javadoc.io/doc/com.google.code.gson/gson/2.6.2/com/google/gson/JsonDeserializer.html">
-     * GSON deserializer</a> for the {@link com.postman.collection.RequestAuth} object.
+     * GSON deserializer</a> for the {@link RequestAuth} object.
      * 
      * 
      * @param jElement

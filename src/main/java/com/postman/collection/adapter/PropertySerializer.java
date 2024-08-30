@@ -1,11 +1,11 @@
 package com.postman.collection.adapter;
 
-import com.postman.collection.*;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSerializer;
 
 import com.google.gson.JsonSerializationContext;
+import com.postman.collection.element.Property;
 
 
 import java.lang.reflect.Type;

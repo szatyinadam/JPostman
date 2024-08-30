@@ -109,7 +109,7 @@
             </descriptorRefs>
             <archive>
               <manifest>
-                <mainClass>com.postman.collection.Collection</mainClass>
+                <mainClass>com.postman.collection.element.Collection</mainClass>
               </manifest>
             </archive>
 

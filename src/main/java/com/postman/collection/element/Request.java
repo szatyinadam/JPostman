@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 import com.postman.collection.exception.InvalidCollectionActionException;
 
 import java.util.ArrayList;
@@ -22,8 +22,8 @@ public class Request extends Item {
     
     /**
      * 
-     * Create a request with the specific name and pre-populated {@link com.postman.collection.RequestBody}.
-     * @param req A {@link com.postman.collection.RequestBody} instance.
+     * Create a request with the specific name and pre-populated {@link RequestBody}.
+     * @param req A {@link RequestBody} instance.
      * @param name The name of the request.
      */
     
@@ -74,7 +74,7 @@ public class Request extends Item {
      * Return an ArrayList&#60;Response&#62; containing the values in the <code>response</code> property array, or null if none are defined.
      * 
      * 
-     * @return ArrayList&#60;{@link com.postman.collection.Response Response}&#62;  The responses, or null if none are defined.
+     * @return ArrayList&#60;{@link Response Response}&#62;  The responses, or null if none are defined.
      */
     public ArrayList<Response> getResponses() {
         return response;

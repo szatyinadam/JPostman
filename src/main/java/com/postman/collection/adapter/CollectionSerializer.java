@@ -4,7 +4,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSerializer;
 import com.google.gson.JsonSerializationContext;
-import com.postman.collection.*;
+import com.postman.collection.element.Collection;
+
 import java.lang.reflect.Type;
 
 

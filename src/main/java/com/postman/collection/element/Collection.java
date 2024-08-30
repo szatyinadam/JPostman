@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -216,7 +216,7 @@ public class Collection extends ItemGroup {
     
     /** 
      * 
-     * Convenience method to add a request with a pre-constructed ArrayList&#60;{@link com.postman.collection.Response}&#62; of response items.
+     * Convenience method to add a request with a pre-constructed ArrayList&#60;{@link Response}&#62; of response items.
      * 
      * @param newRequest The new Request to add
      * @param name The name of the request
@@ -796,7 +796,7 @@ public class Collection extends ItemGroup {
     
     /** 
      * 
-     * Set the <code>auth</code> object property of this collection with a {@link com.postman.collection.RequestAuth} object containing the values.  
+     * Set the <code>auth</code> object property of this collection with a {@link RequestAuth} object containing the values.
      * 
      * @param auth The new auth values, or null to remove an existing auth.
      */
@@ -873,8 +873,8 @@ public class Collection extends ItemGroup {
         gsonBuilder.registerTypeAdapter(mapType, new com.postman.collection.adapter.StringMapSerializer());
         gsonBuilder.registerTypeAdapter(varMapType, new com.postman.collection.adapter.PropertyListSerializer());
         gsonBuilder.registerTypeAdapter(RequestAuth.class, new com.postman.collection.adapter.AuthSerializer());
-        gsonBuilder.registerTypeAdapter(com.postman.collection.Collection.class, new com.postman.collection.adapter.CollectionSerializer());
-        gsonBuilder.registerTypeAdapter(com.postman.collection.Property.class, new com.postman.collection.adapter.PropertySerializer());
+        gsonBuilder.registerTypeAdapter(Collection.class, new com.postman.collection.adapter.CollectionSerializer());
+        gsonBuilder.registerTypeAdapter(Property.class, new com.postman.collection.adapter.PropertySerializer());
 
         Gson customGson = gsonBuilder.create();
         return customGson.toJson(this);
@@ -907,7 +907,7 @@ public class Collection extends ItemGroup {
      * 
      * Set the array of key-value pairs in this collections <code>variable</code> array element
      * 
-     * @param vars The ArrayList&#60;{@link com.postman.collection.Property}&#62; containing the variables
+     * @param vars The ArrayList&#60;{@link Property}&#62; containing the variables
      */
     public void setVariables(PropertyList<Property> vars) {
         this.variable = vars;
@@ -968,9 +968,9 @@ public class Collection extends ItemGroup {
     }
 
     /** 
-     * Get the ArrayList&#60;{@link com.postman.collection.Property Property}&#62; containing the key-value pairs comprising the <code>variable</code> array element of this collection
+     * Get the ArrayList&#60;{@link Property Property}&#62; containing the key-value pairs comprising the <code>variable</code> array element of this collection
      * 
-     * @return ArrayList&#60;{@link com.postman.collection.Property Property}&#62;
+     * @return ArrayList&#60;{@link Property Property}&#62;
      */
     public PropertyList<Property> getVariables() {
         return this.variable;

@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 import com.networknt.schema.ValidationMessage;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public abstract class CollectionElement {
      * Validate the gson produced by this element against the PostmanSchema.  Schema version is currently hardcoded to 
      * <a href="https://schema.postman.com/collection/json/v2.1.0/draft-07/collection.json">v2.1.0</a>.  Validation is provided by the <a href="https://github.com/networknt/json-schema-validator">NetworkNT json-schema-validator</a>
      * 
-     * @return boolean <code>true</code> if valid, <code>false</code> if not.  If the schema is invalid, calling {@link com.postman.collection.Collection#getValidationMessages()  } will return an  containing the diffs
+     * @return boolean <code>true</code> if valid, <code>false</code> if not.  If the schema is invalid, calling {@link com.postman.collection.element.Collection#getValidationMessages()  } will return an  containing the diffs
      * @throws ValidationException If an error is encountered accessing the schema or mapping the underlying JSON.
      */
     public boolean validate() throws ValidationException {
@@ -74,7 +74,7 @@ public abstract class CollectionElement {
      * Convenience method allowing validation against a user-provided schema
      * 
      * @param altSchemaJSON  String containing the alternate schema JSON
-     * @return boolean <code>true</code> if valid, <code>false</code> if not.  If the schema is invalid, calling {@link com.postman.collection.Collection#getValidationMessages()  } will return an  containing the diffs
+     * @return boolean <code>true</code> if valid, <code>false</code> if not.  If the schema is invalid, calling {@link com.postman.collection.element.Collection#getValidationMessages()  } will return an  containing the diffs
      * @throws ValidationException If there is an error in the validation process
      */
     public boolean validate(String altSchemaJSON) throws ValidationException {

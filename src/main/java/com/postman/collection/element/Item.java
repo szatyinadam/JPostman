@@ -1,4 +1,5 @@
-package com.postman.collection;
+package com.postman.collection.element;
+
 import java.util.ArrayList;
     /**
      * 

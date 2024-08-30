@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 import com.postman.collection.exception.IllegalPropertyAccessException;
 import com.postman.collection.exception.RecursiveItemAddException;
 
@@ -27,9 +27,9 @@ public abstract class ItemGroup extends Item {
 
     /** 
      * 
-     * Return an ArrayList&#60;{@link com.postman.collection.Item Item}&#62; containing the tree of items owned by this item.
+     * Return an ArrayList&#60;{@link Item Item}&#62; containing the tree of items owned by this item.
      * 
-     *      * @return ArrayList&#60;{@link com.postman.collection.Item Item}&#62;  The items
+     *      * @return ArrayList&#60;{@link Item Item}&#62;  The items
      */
     public ArrayList<Item> getItems() {
         return item;

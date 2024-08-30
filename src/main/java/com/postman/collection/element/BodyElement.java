@@ -1,5 +1,5 @@
 
-package com.postman.collection;
+package com.postman.collection.element;
 
 import com.postman.collection.exception.IllegalPropertyAccessException;
 
@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * 
- * <p>Encapsulates the <code>body</code> property of a {@link com.postman.collection.Request} object.  
+ * <p>Encapsulates the <code>body</code> property of a {@link Request} object.
  * 
  * <p>Postman SDK analog: <code><a href="http://www.postmanlabs.com/postman-collection/RequestBody.html">RequestBody</a></code></p>
  * 
@@ -151,7 +151,7 @@ public class BodyElement extends CollectionElement {
 
     /** 
      * 
-     * Returns the <code>options</code> property object as an instance of the inner class {@link com.postman.collection.BodyElement.BodyOptions}
+     * Returns the <code>options</code> property object as an instance of the inner class {@link BodyElement.BodyOptions}
      * 
      * 
      * @return BodyOptions
@@ -353,7 +353,7 @@ public class BodyElement extends CollectionElement {
      * 
      * 
      * 
-     * @return ArrayList&#60;{@link com.postman.collection.Property Property}&#62; The data
+     * @return ArrayList&#60;{@link Property Property}&#62; The data
      * @throws IllegalPropertyAccessException If <code>mode</code> is not URLENCODED or FORMDATA
      */
     public PropertyList<Property> getFormdata() throws IllegalPropertyAccessException {
@@ -376,7 +376,7 @@ public class BodyElement extends CollectionElement {
     
     /** 
      * 
-     * Returns a {@link com.postman.collection.Property Property} containing formdata property at the specified position in the array
+     * Returns a {@link Property Property} containing formdata property at the specified position in the array
      * 
      * @param position The position in the array
      * @return Property The form data.
@@ -400,10 +400,10 @@ public class BodyElement extends CollectionElement {
 
     
     /** 
-     * Convenience method to set the formdata with an already filled ArrayList&#60;{@link com.postman.collection.Property Property}&#62; of properties
+     * Convenience method to set the formdata with an already filled ArrayList&#60;{@link Property Property}&#62; of properties
      * 
      * 
-     * @param data  The filled ArrayList&#60;{@link com.postman.collection.Property Property}&#62;
+     * @param data  The filled ArrayList&#60;{@link Property Property}&#62;
      * @throws IllegalPropertyAccessException If <code>mode</code> is not URLENCODED or FORMDATA
      */
     public void setFormdata(PropertyList<Property> data) throws IllegalPropertyAccessException {

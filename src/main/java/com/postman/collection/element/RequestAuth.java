@@ -1,11 +1,11 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 
-    /** 
+/**
      * 
      * Postman SDK analog: <code><a href="http://www.postmanlabs.com/postman-collection/RequestAuth.html">RequestAuth</code></a>.
      * 
-     * Class encapsulating the "auth" property of a {@link com.postman.collection.Collection} or {@link com.postman.collection.RequestBody}.  Collections and requests can each have a single auth property,
+     * Class encapsulating the "auth" property of a {@link Collection} or {@link RequestBody}.  Collections and requests can each have a single auth property,
      * which consists of a type (e.g., 'oauth1') and an array of parameters for that authentication type.  For example, oauth2 looks like:
      * <pre>
      * auth": {

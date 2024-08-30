@@ -1,9 +1,9 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 import java.util.ArrayList;
 /**
  * 
- * Class to encapsulate the <code>response</code> object property of a {@link com.postman.collection.Request}.
+ * Class to encapsulate the <code>response</code> object property of a {@link Request}.
  * 
  * <p>Postman SDK analog: <code><a href="http://www.postmanlabs.com/postman-collection/Response.html">Response</a></code>.</p>
  * 
@@ -90,7 +90,7 @@ public class Response extends CollectionElement {
     /** 
      * Get the ArrayList containing the key-value paris in the <code>header</code> element array
      * 
-     * @return ArrayList&#60;{@link com.postman.collection.Property Property}&#62;
+     * @return ArrayList&#60;{@link Property Property}&#62;
      */
     public PropertyList<Property> getHeader() {
         return this.header;
@@ -216,7 +216,7 @@ public class Response extends CollectionElement {
      * 
      * Return an ArrayList containing the Cookie objects comprising the value of the <code>cookie</code> array property
      * 
-     * @return ArrayList&#60;{@link com.postman.collection.Cookie}&#62; The cookies
+     * @return ArrayList&#60;{@link Cookie}&#62; The cookies
      */
     public ArrayList<Cookie> getCookies() {
         return cookie;

@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 
 import com.postman.collection.exception.DuplicateVariableKeyException;
@@ -7,7 +7,7 @@ import com.postman.collection.exception.VariableResolutionException;
 /**
  * 
  * 
- * Encapsulates the <code>request</code> object property of a {@link com.postman.collection.Request}
+ * Encapsulates the <code>request</code> object property of a {@link Request}
  * 
  * <p>Postman SDK analog: <code><a href = "http://www.postmanlabs.com/postman-collection/RequestBody.html">RequestBody</code</a>.</p>
  * 
@@ -103,7 +103,7 @@ public class RequestBody extends CollectionElement {
     
     /** 
      * 
-     * Set the values in the <code>auth</code> array with a pre-populated {@link com.postman.collection.RequestAuth} object.
+     * Set the values in the <code>auth</code> array with a pre-populated {@link RequestAuth} object.
      * 
      * @param auth  The auth
      */
@@ -115,7 +115,7 @@ public class RequestBody extends CollectionElement {
     
     /** 
      * 
-     * Get the {@link com.postman.collection.RequestAuth} object containing the values of the <code>auth</code> array, or null if it has not been set.
+     * Get the {@link RequestAuth} object containing the values of the <code>auth</code> array, or null if it has not been set.
      * 
      * @return RequestAuth The auth object containing the values.
      */
@@ -211,7 +211,7 @@ public class RequestBody extends CollectionElement {
      * Return an ArrayList of Property objects containing the key-value pair values for the <code>header</code> property array
      * 
      * 
-     * @return ArrayList&#60;{@link com.postman.collection.Property Property}&#62; The headers, or null if none are present
+     * @return ArrayList&#60;{@link Property Property}&#62; The headers, or null if none are present
      */
     public PropertyList<Property> getHeader() {
         return header;

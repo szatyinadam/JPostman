@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 /**
  * 
@@ -192,7 +192,7 @@ public class Cookie extends CollectionElement {
 
     
     /** 
-     * @return ArrayList&#60;{@link com.postman.collection.Property Property}&#62;
+     * @return ArrayList&#60;{@link Property Property}&#62;
      */
     public PropertyList<Property> getExtensions() {
         return extensions;

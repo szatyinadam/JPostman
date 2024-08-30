@@ -1,12 +1,14 @@
 package com.postman.collection.adapter;
 
-import com.postman.collection.*;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
 import com.google.gson.JsonSerializer;
 import com.google.gson.JsonSerializationContext;
+import com.postman.collection.element.Property;
+import com.postman.collection.element.RequestAuth;
+
 import java.lang.reflect.Type;
 
 /**
@@ -20,8 +22,8 @@ public class AuthSerializer implements JsonSerializer<RequestAuth> {
 
     
     /** 
-     * @param src The {@link com.postman.collection.RequestAuth} object to be deserialized
-     * @param typeOfSrc The type, {@link com.postman.collection.RequestAuth}
+     * @param src The {@link RequestAuth} object to be deserialized
+     * @param typeOfSrc The type, {@link RequestAuth}
      * @param context Serialization context 
      * @return JsonElement The JSON element returned by this serializer
      */

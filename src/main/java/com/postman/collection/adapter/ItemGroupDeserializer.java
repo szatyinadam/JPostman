@@ -1,6 +1,5 @@
 package com.postman.collection.adapter;
 
-import com.postman.collection.*;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonParseException;
@@ -9,6 +8,11 @@ import com.google.gson.JsonDeserializer;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import com.google.gson.reflect.TypeToken;
+import com.postman.collection.element.Folder;
+import com.postman.collection.element.Item;
+import com.postman.collection.element.ItemGroup;
+import com.postman.collection.element.RequestAuth;
+
 /**
  * 
  * 
@@ -20,13 +24,13 @@ public class ItemGroupDeserializer implements JsonDeserializer<ItemGroup> {
 
     /**
      * 
-     * Deserialize a {@link com.postman.collection.ItemGroup} from the <code>item</code> propertyList
+     * Deserialize a {@link ItemGroup} from the <code>item</code> propertyList
      * 
      * 
      * @param jElement The JSON element passed in by Gson
-     * @param typeOfT The type for the adapter, {@link com.postman.collection.RequestAuth}
+     * @param typeOfT The type for the adapter, {@link RequestAuth}
      * @param context Deserialization context
-     * @return ItemGroup The assembed {@link com.postman.collection.ItemGroup}
+     * @return ItemGroup The assembed {@link ItemGroup}
      * @throws JsonParseException IF there are errors in the JSON element
      */
     @Override

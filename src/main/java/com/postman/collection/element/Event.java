@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 import com.postman.collection.exception.InvalidPropertyException;
 

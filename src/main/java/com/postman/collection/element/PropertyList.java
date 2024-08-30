@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.element;
 
 import java.util.ArrayList;
 
@@ -11,12 +11,12 @@ import java.util.ArrayList;
  * 
  * <p> Extends ArrayList with Map like capabilities, including:
  * <ul>
- * <li>Support for retrieving by variable key which is always {@link com.postman.collection.Property#getKey()}
+ * <li>Support for retrieving by variable key which is always {@link Property#getKey()}
  * <li>Support for retrieving by index
  * <li>Support for adding by index
  * <li>Duplicate keys are not allowed
  * <li>Null keys are allowed.
- * <li>Contains returns results based on {@link com.postman.collection.Property#equals(Object)}
+ * <li>Contains returns results based on {@link Property#equals(Object)}
  * <li>Set will set the value of the variable in this ListMap if it exists, otherwise it will set the value of the specified <code>index</code>
  * <li>the <code>add</code> method returns false if the specified key already exists in the collection and does not change the collection
  * </ul>

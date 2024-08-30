@@ -11,7 +11,7 @@ A Java wrapper for Postman collection files.
 ## Getting started
 
 1. Download the JAR file from the releases tab
-2. Import `com.postman.collection.Collection` in your source code.
+2. Import `com.postman.collection.element.Collection` in your source code.
 3. Instantiate a new collection by passing the path to a Postman collection .json file to the `Collection.pmcFactory` method
 
 ```java
