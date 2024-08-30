@@ -1,6 +1,8 @@
 
 package com.postman.collection;
 
+import com.postman.collection.exception.IllegalPropertyAccessException;
+
 import java.util.HashMap;
 
 /**

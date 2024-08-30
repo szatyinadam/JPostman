@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.io.File;
 
+import com.postman.collection.exception.DuplicateVariableKeyException;
+import com.postman.collection.exception.IllegalPropertyAccessException;
+import com.postman.collection.exception.InvalidPropertyException;
+import com.postman.collection.exception.ValidationException;
 import org.junit.Test;
 
 import com.networknt.schema.ValidationMessage;

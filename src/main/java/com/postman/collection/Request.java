@@ -1,4 +1,6 @@
 package com.postman.collection;
+import com.postman.collection.exception.InvalidCollectionActionException;
+
 import java.util.ArrayList;
 
 /**

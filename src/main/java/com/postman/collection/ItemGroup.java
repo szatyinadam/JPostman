@@ -1,4 +1,7 @@
 package com.postman.collection;
+import com.postman.collection.exception.IllegalPropertyAccessException;
+import com.postman.collection.exception.RecursiveItemAddException;
+
 import java.util.ArrayList;
 
 

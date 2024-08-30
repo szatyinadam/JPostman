@@ -15,6 +15,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
 import com.flipkart.zjsonpatch.*;
+import com.postman.collection.exception.ValidationException;
+
 /**
  * Abstract Base Class for all objects which are part of a collection
  * 
@@ -37,7 +39,7 @@ public abstract class CollectionElement {
      * <a href="https://schema.postman.com/collection/json/v2.1.0/draft-07/collection.json">v2.1.0</a>.  Validation is provided by the <a href="https://github.com/networknt/json-schema-validator">NetworkNT json-schema-validator</a>
      * 
      * @return boolean <code>true</code> if valid, <code>false</code> if not.  If the schema is invalid, calling {@link com.postman.collection.Collection#getValidationMessages()  } will return an  containing the diffs
-     * @throws ValidationException If an error is encountered accessing the schema or mapping the underlying JSON.  
+     * @throws ValidationException If an error is encountered accessing the schema or mapping the underlying JSON.
      */
     public boolean validate() throws ValidationException {
         return this.validate(null);

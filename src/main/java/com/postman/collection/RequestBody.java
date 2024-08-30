@@ -1,6 +1,9 @@
 package com.postman.collection;
 
 
+import com.postman.collection.exception.DuplicateVariableKeyException;
+import com.postman.collection.exception.VariableResolutionException;
+
 /**
  * 
  * 

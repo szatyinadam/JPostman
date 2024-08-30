@@ -1,5 +1,9 @@
 package com.postman.collection;
 
+import com.postman.collection.exception.DuplicateVariableKeyException;
+import com.postman.collection.exception.IllegalPropertyAccessException;
+import com.postman.collection.exception.VariableResolutionException;
+
 import java.util.regex.*;
 
 import java.util.ArrayList;

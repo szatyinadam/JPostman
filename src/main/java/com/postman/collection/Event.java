@@ -1,5 +1,7 @@
 package com.postman.collection;
 
+import com.postman.collection.exception.InvalidPropertyException;
+
 import java.util.ArrayList;
 /**
  * 

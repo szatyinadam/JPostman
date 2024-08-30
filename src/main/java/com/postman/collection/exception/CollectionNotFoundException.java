@@ -1,4 +1,4 @@
-package com.postman.collection;
+package com.postman.collection.exception;
 /**
  * 
  * Thrown when a collection is not found in Postman, or if a 404 is thrown attempting to retrieve
