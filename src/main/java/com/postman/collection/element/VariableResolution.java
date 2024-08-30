@@ -1,9 +1,8 @@
 package com.postman.collection.element;
+
 /**
- * 
- * 
  * <p>Enumeration listing variable resolution strategies</p>
- * 
+ *
  * <table>
  * <tbody>
  * <tr>
@@ -23,8 +22,6 @@ package com.postman.collection.element;
  * </tr>
  * </tbody>
  * </table>
- * 
- * 
  */
 public enum VariableResolution {
     RESOLVE, TRANSFORM, NONE

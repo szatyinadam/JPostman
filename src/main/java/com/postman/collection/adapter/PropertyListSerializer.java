@@ -7,11 +7,9 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 
 
-
-
 public class PropertyListSerializer implements JsonSerializer<HashMap<String, Property>> {
-    
-    /** 
+
+    /**
      * @param src
      * @param typeOfSrc
      * @param context
@@ -39,7 +37,5 @@ public class PropertyListSerializer implements JsonSerializer<HashMap<String, Pr
         }
 
         return varArray;
-
     }
-
 }

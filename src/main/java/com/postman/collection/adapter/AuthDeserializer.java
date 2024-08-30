@@ -1,37 +1,24 @@
 package com.postman.collection.adapter;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonDeserializer;
+import com.google.gson.*;
 import com.postman.collection.element.Property;
 import com.postman.collection.element.RequestAuth;
 
 import java.lang.reflect.Type;
+
 /**
- * 
- * 
- * 
- * 
- * Custom deserializer for the <code>auth</code> property object.  
- * 
- * 
- * 
+ * Custom deserializer for the <code>auth</code> property object.
  */
 public class AuthDeserializer implements JsonDeserializer<RequestAuth> {
 
     /**
-     * 
      * Custom <a href=
      * "https://www.javadoc.io/doc/com.google.code.gson/gson/2.6.2/com/google/gson/JsonDeserializer.html">
      * GSON deserializer</a> for the {@link RequestAuth} object.
-     * 
-     * 
+     *
      * @param jElement The JSON element passed in by Gson
-     * @param typeOfT The type for the adapter, {@link RequestAuth}
-     * @param context Deserialization context
+     * @param typeOfT  The type for the adapter, {@link RequestAuth}
+     * @param context  Deserialization context
      * @return {@link RequestAuth} The assembed {@link RequestAuth} object
      * @throws JsonParseException IF there are errors in the JSON element
      */
@@ -49,12 +36,12 @@ public class AuthDeserializer implements JsonDeserializer<RequestAuth> {
         for (int i = 0; i < vars.size(); i++) {
             curVar = vars.get(i).getAsJsonObject();
             curVar.get("key");
-            
+
             curKey = curVar.get("key") == null ? null : curVar.get("key").getAsString();
             curVal = curVar.get("value") == null ? null : curVar.get("value").getAsString();
             curType = curVar.get("type") == null ? null : curVar.get("type").getAsString();
-            
-            pvVar = new Property(curKey, curVal, null,curType);
+
+            pvVar = new Property(curKey, curVal, null, curType);
             try {
                 auth.addProperty(pvVar);
             } catch (Exception e) {
@@ -62,8 +49,7 @@ public class AuthDeserializer implements JsonDeserializer<RequestAuth> {
             }
 
         }
-        
-        return auth;
 
+        return auth;
     }
 }
