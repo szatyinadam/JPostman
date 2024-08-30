@@ -8,7 +8,7 @@ package com.postman.collection;
  * 
  * 
  */
-public enum enumEventType {
+public enum EventType {
     PRE_REQUEST,
     TEST
 }

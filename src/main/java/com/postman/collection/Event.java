@@ -62,7 +62,7 @@ public class Event extends CollectionElement {
      * @param evtType Content type of the script, always "text/javascript"
      * 
      */
-    public Event(enumEventType evtType, String sourceCode)  {
+    public Event(EventType evtType, String sourceCode)  {
         this.setEventType(evtType);
         this.setScript(new PostmanScript(this.getScriptType(), sourceCode));
     }
@@ -93,11 +93,11 @@ public class Event extends CollectionElement {
      * 
      * @return enumEventType The event type
      */
-    public enumEventType getEventType() {
+    public EventType getEventType() {
         if (this.getListen().equals("test")) {
-            return enumEventType.TEST;
+            return EventType.TEST;
         } else if (this.getListen().equals("prerequest")) {
-            return enumEventType.PRE_REQUEST;
+            return EventType.PRE_REQUEST;
         } else {
             return null;
         }
@@ -111,10 +111,10 @@ public class Event extends CollectionElement {
      * @param eventType The type of the event
      * 
      */
-    public void setEventType(enumEventType eventType)   {
-        if (eventType == enumEventType.PRE_REQUEST) {
+    public void setEventType(EventType eventType)   {
+        if (eventType == EventType.PRE_REQUEST) {
             this.setListen("prerequest");
-        } else if (eventType == enumEventType.TEST) {
+        } else if (eventType == EventType.TEST) {
             this.setListen("test");
         }
     }

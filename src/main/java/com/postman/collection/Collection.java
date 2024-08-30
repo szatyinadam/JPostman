@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 
 import java.net.http.HttpResponse.BodyHandlers;
@@ -177,7 +176,7 @@ public class Collection extends ItemGroup {
             throw new InvalidCollectionActionException("Url must be a non-zero length string");
         }
 
-        Request newReq = this.addRequest(new RequestBody(enumHTTPRequestMethod.GET, url), "New Request");
+        Request newReq = this.addRequest(new RequestBody(HTTPRequestMethod.GET, url), "New Request");
        
 
         return newReq;
@@ -209,7 +208,7 @@ public class Collection extends ItemGroup {
      */
 
     public Request getRequest(String name) {
-        return (Request)this.getItem(name,enumItemType.REQUEST);
+        return (Request)this.getItem(name, ItemType.REQUEST);
     }
 
     
@@ -405,8 +404,8 @@ public class Collection extends ItemGroup {
     }
 
     private void setParents() {
-        ArrayList<Item> folders = this.getItems(enumItemType.FOLDER);
-        ArrayList<Item> requests = this.getItems(enumItemType.REQUEST);
+        ArrayList<Item> folders = this.getItems(ItemType.FOLDER);
+        ArrayList<Item> requests = this.getItems(ItemType.REQUEST);
         folders = folders == null ? new ArrayList<Item>() : folders;
         requests = requests == null ? new ArrayList<Item>() : requests;
         Item curParent = null;

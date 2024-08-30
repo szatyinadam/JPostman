@@ -9,6 +9,6 @@ package com.postman.collection;
  * 
  * 
  */
-public enum enumRequestBodyMode {
+public enum RequestBodyMode {
     TEXT,FORMDATA,RAW,FILE,GRAPHQL,URLENCODED;
 }

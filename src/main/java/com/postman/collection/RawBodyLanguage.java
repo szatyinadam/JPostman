@@ -6,6 +6,6 @@ package com.postman.collection;
  * 
  * 
  */
-public enum enumRawBodyLanguage {
+public enum RawBodyLanguage {
     TEXT,JAVASCRIPT,JSON,HTML,XML,GRAPHQL;
 }

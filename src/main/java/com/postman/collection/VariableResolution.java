@@ -26,6 +26,6 @@ package com.postman.collection;
  * 
  * 
  */
-public enum enumVariableResolution {
+public enum VariableResolution {
     RESOLVE, TRANSFORM, NONE
 }

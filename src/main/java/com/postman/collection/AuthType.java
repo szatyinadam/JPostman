@@ -10,7 +10,7 @@ package com.postman.collection;
  * 
  * 
  */
-public enum enumAuthType {
+public enum AuthType {
 
     AKAMAI, APIKEY, AWS, BEARER, BASIC, DIGEST, HAWK, OAUTH1, OAUTH2, NTLM
 

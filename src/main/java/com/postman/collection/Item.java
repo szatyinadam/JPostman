@@ -211,7 +211,7 @@ public abstract class Item extends CollectionElement {
      * @param evtType Enumerated value for the event type, eg., pre-request or test.
      * @return Event The event, if it exists
      */
-    public Event getEvent(enumEventType evtType) {
+    public Event getEvent(EventType evtType) {
         if (event == null) {
             return null;
         }
@@ -295,7 +295,7 @@ public abstract class Item extends CollectionElement {
      */
     public void setPreRequestScript(String code)  {
 
-        Event prEvent = new Event(enumEventType.PRE_REQUEST, code);
+        Event prEvent = new Event(EventType.PRE_REQUEST, code);
         this.addEvent(prEvent);
     }
 
@@ -304,7 +304,7 @@ public abstract class Item extends CollectionElement {
      * @return Event
      */
     public Event getPreRequestScript() {
-        return this.getEvent(enumEventType.PRE_REQUEST);
+        return this.getEvent(EventType.PRE_REQUEST);
     }
 
     
@@ -312,7 +312,7 @@ public abstract class Item extends CollectionElement {
      * @return Event
      */
     public Event getTestScript() {
-        return this.getEvent(enumEventType.TEST);
+        return this.getEvent(EventType.TEST);
     }
 
     
@@ -324,7 +324,7 @@ public abstract class Item extends CollectionElement {
      */
     public void setTestScript(String code)  {
 
-        Event prEvent = new Event(enumEventType.TEST, code);
+        Event prEvent = new Event(EventType.TEST, code);
         this.addEvent(prEvent);
     }
 

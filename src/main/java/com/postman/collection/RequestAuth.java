@@ -60,16 +60,16 @@ public class RequestAuth extends CollectionElement {
      */
 
     public RequestAuth() {
-        arrTypes[enumAuthType.AKAMAI.ordinal()] = "edgegrid";
-        arrTypes[enumAuthType.APIKEY.ordinal()] = "apikey";
-        arrTypes[enumAuthType.AWS.ordinal()] = "awsv4";
-        arrTypes[enumAuthType.BEARER.ordinal()] = "bearer";
-        arrTypes[enumAuthType.BASIC.ordinal()] = "basic";
-        arrTypes[enumAuthType.DIGEST.ordinal()] = "digest";
-        arrTypes[enumAuthType.HAWK.ordinal()] = "hawk";
-        arrTypes[enumAuthType.OAUTH1.ordinal()] = "oauth1";
-        arrTypes[enumAuthType.OAUTH2.ordinal()] = "oauth2";
-        arrTypes[enumAuthType.NTLM.ordinal()] = "ntlm";
+        arrTypes[AuthType.AKAMAI.ordinal()] = "edgegrid";
+        arrTypes[AuthType.APIKEY.ordinal()] = "apikey";
+        arrTypes[AuthType.AWS.ordinal()] = "awsv4";
+        arrTypes[AuthType.BEARER.ordinal()] = "bearer";
+        arrTypes[AuthType.BASIC.ordinal()] = "basic";
+        arrTypes[AuthType.DIGEST.ordinal()] = "digest";
+        arrTypes[AuthType.HAWK.ordinal()] = "hawk";
+        arrTypes[AuthType.OAUTH1.ordinal()] = "oauth1";
+        arrTypes[AuthType.OAUTH2.ordinal()] = "oauth2";
+        arrTypes[AuthType.NTLM.ordinal()] = "ntlm";
     }
 
     /** 
@@ -88,7 +88,7 @@ public class RequestAuth extends CollectionElement {
      * 
      * @param type  The underlying type property of the new Auth object, as an enumeration
      */
-    public RequestAuth(enumAuthType type) {
+    public RequestAuth(AuthType type) {
         this();
         this.setAuthType(type);
     }
@@ -98,7 +98,7 @@ public class RequestAuth extends CollectionElement {
      * @param type  The underlying type property of the new Auth object, as a String, e.g., "oauth1"
      * @param properties HashMap&#60;String, Property&#62; containing the properties of this auth element
      */
-    public RequestAuth(enumAuthType type, PropertyList<Property> properties) {
+    public RequestAuth(AuthType type, PropertyList<Property> properties) {
         this(type);
         this.setAuthType(type);
         this.setProperties(properties);
@@ -126,38 +126,38 @@ public class RequestAuth extends CollectionElement {
      * 
      * @return enumAuthType The underlying type of this authentication object, e.g., `oauth1`
      */
-    public enumAuthType getAuthType() {
+    public AuthType getAuthType() {
 
         switch (type) {
             case "apikey": {
-                return enumAuthType.APIKEY;
+                return AuthType.APIKEY;
             }
             case "bearer": {
-                return enumAuthType.APIKEY;
+                return AuthType.APIKEY;
             }
             case "digest": {
-                return enumAuthType.DIGEST;
+                return AuthType.DIGEST;
             }
             case "basic": {
-                return enumAuthType.BASIC;
+                return AuthType.BASIC;
             }
             case "oauth1": {
-                return enumAuthType.OAUTH1;
+                return AuthType.OAUTH1;
             }
             case "oauth2": {
-                return enumAuthType.OAUTH2;
+                return AuthType.OAUTH2;
             }
             case "hawk": {
-                return enumAuthType.HAWK;
+                return AuthType.HAWK;
             }
             case "ntlm": {
-                return enumAuthType.NTLM;
+                return AuthType.NTLM;
             }
             case "edgegrid": {
-                return enumAuthType.AKAMAI;
+                return AuthType.AKAMAI;
             }
             case "awsv4": {
-                return enumAuthType.AWS;
+                return AuthType.AWS;
             }
             default: {
                 return null;
@@ -172,7 +172,7 @@ public class RequestAuth extends CollectionElement {
      * 
      * @param type Enumerated value of the underlying type property
      */
-    public void setAuthType(enumAuthType type) {
+    public void setAuthType(AuthType type) {
         this.type = arrTypes[(type.ordinal())];
         PropertyList<Property> newProps = new PropertyList<Property>();
         switch (type) {

@@ -49,7 +49,7 @@ package com.postman.collection;
  * 
  */
 public class RequestBody extends CollectionElement {
-    private enumHTTPRequestMethod method = enumHTTPRequestMethod.GET;
+    private HTTPRequestMethod method = HTTPRequestMethod.GET;
     private Url url;
     private PropertyList<Property> header;
     private String description;
@@ -75,7 +75,7 @@ public class RequestBody extends CollectionElement {
      * @param host  String containing the host portion of the URL.
      * @param path String containing the path portion of the URL.
      */
-    public RequestBody(enumHTTPRequestMethod method, String host, String path) throws DuplicateVariableKeyException {
+    public RequestBody(HTTPRequestMethod method, String host, String path) throws DuplicateVariableKeyException {
 
         this.setMethod(method);
         
@@ -91,7 +91,7 @@ public class RequestBody extends CollectionElement {
      * @param url  Pre-constructed Url object
      * 
      */
-    public RequestBody(enumHTTPRequestMethod method, Url url) {
+    public RequestBody(HTTPRequestMethod method, Url url) {
 
         this.setMethod(method);
         this.setUrl(url);
@@ -129,7 +129,7 @@ public class RequestBody extends CollectionElement {
      * @param method  Enumerated value for the HTTP method
      * @param URL  The raw URL 
      */
-    public RequestBody(enumHTTPRequestMethod method, String URL) throws DuplicateVariableKeyException {
+    public RequestBody(HTTPRequestMethod method, String URL) throws DuplicateVariableKeyException {
 
         this.setUrl(new Url(URL));
         this.setMethod(method);
@@ -143,7 +143,7 @@ public class RequestBody extends CollectionElement {
      * 
      * @return enumHTTPRequestMethod
      */
-    public enumHTTPRequestMethod getMethod() {
+    public HTTPRequestMethod getMethod() {
         return method;
     }
 
@@ -154,7 +154,7 @@ public class RequestBody extends CollectionElement {
      * 
      * @param method
      */
-    public void setMethod(enumHTTPRequestMethod method) {
+    public void setMethod(HTTPRequestMethod method) {
         this.method = method;
     }
 
@@ -255,7 +255,7 @@ public class RequestBody extends CollectionElement {
      * @param bodyMode The body mode, eg. RAW
      * @return PostmanBody  The new body
      */
-    public BodyElement setBody(enumRequestBodyMode bodyMode) {
+    public BodyElement setBody(RequestBodyMode bodyMode) {
         return this.setBody(bodyMode, null);
     }
 
@@ -271,8 +271,8 @@ public class RequestBody extends CollectionElement {
      * @param rawContent The raw content for the body
      * @return PostmanBody The new body
      */
-    public BodyElement setBody(enumRequestBodyMode bodyMode, String rawContent) {
-        this.setBody(new BodyElement(bodyMode, rawContent, enumRawBodyLanguage.TEXT));
+    public BodyElement setBody(RequestBodyMode bodyMode, String rawContent) {
+        this.setBody(new BodyElement(bodyMode, rawContent, RawBodyLanguage.TEXT));
         return this.getBody();
     }
 

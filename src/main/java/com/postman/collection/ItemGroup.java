@@ -40,7 +40,7 @@ public abstract class ItemGroup extends Item {
      * @param filter Enumerated value for the object type, eg., FOLDER or REQUEST.  Passing null returns all items.
      * @return
      */
-    public ArrayList<Item> getItems(enumItemType filter) {
+    public ArrayList<Item> getItems(ItemType filter) {
         ArrayList<Item> results = new ArrayList<Item>();
 
         if (item == null) {
@@ -55,7 +55,7 @@ public abstract class ItemGroup extends Item {
                 results.addAll(((ItemGroup)curItem).getItems(filter));
             }
             else if (filter != null && curItem instanceof Folder) {
-                if(filter == enumItemType.FOLDER) {
+                if(filter == ItemType.FOLDER) {
                     results.add(curItem);
                 }
                 try {
@@ -65,7 +65,7 @@ public abstract class ItemGroup extends Item {
                     e.printStackTrace();
                 }
             }
-            else if((filter != null && filter == enumItemType.REQUEST && curItem instanceof Request)) {
+            else if((filter != null && filter == ItemType.REQUEST && curItem instanceof Request)) {
                 results.add(curItem);
             }
             
@@ -113,7 +113,7 @@ public abstract class ItemGroup extends Item {
      * @return Item The item if present, or null
      */
     
-    public Item getItem(String key, enumItemType filter) {
+    public Item getItem(String key, ItemType filter) {
         Item result = null;
         if (this.item == null) {
             return null;
@@ -127,9 +127,9 @@ public abstract class ItemGroup extends Item {
                 break;
             }
             if (curItem.getKey().equals(key)) {
-                if (filter != null && (filter == enumItemType.REQUEST) && curItem instanceof Request) {
+                if (filter != null && (filter == ItemType.REQUEST) && curItem instanceof Request) {
                     result = curItem;
-                } else if(filter != null && filter == enumItemType.FOLDER &&  curItem instanceof Folder) {
+                } else if(filter != null && filter == ItemType.FOLDER &&  curItem instanceof Folder) {
                     result = (Item)curItem;
                 }
                 break;
@@ -276,11 +276,11 @@ public abstract class ItemGroup extends Item {
     }
 
     public Request getRequest(String key) {
-        return (Request)this.getItem(key, enumItemType.REQUEST);
+        return (Request)this.getItem(key, ItemType.REQUEST);
     }
 
     public Folder getFolder(String key) {
-        return (Folder)this.getItem(key, enumItemType.FOLDER);
+        return (Folder)this.getItem(key, ItemType.FOLDER);
     
     }
 

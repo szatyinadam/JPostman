@@ -112,11 +112,11 @@ public class BodyElement extends CollectionElement {
      * @param content The content in the body
      * @param language For bodies with <code>mode</code> RAW, the language of the body content, e.g., <code>javascript</code>
      */
-    public BodyElement(enumRequestBodyMode mode, String content, enumRawBodyLanguage language)  {
+    public BodyElement(RequestBodyMode mode, String content, RawBodyLanguage language)  {
 
         this.setMode(mode);
 
-        if (this.getMode() == enumRequestBodyMode.RAW) {
+        if (this.getMode() == RequestBodyMode.RAW) {
             try {
                 this.setOptions(new BodyOptions(language));
                 this.setRaw(content);
@@ -128,7 +128,7 @@ public class BodyElement extends CollectionElement {
             
         }
 
-        if (this.getMode() == enumRequestBodyMode.FILE) {
+        if (this.getMode() == RequestBodyMode.FILE) {
             this.file.setSrc(content);
         }
 
@@ -140,7 +140,7 @@ public class BodyElement extends CollectionElement {
      * 
      * @param mode  Enumerated value for the <code>mode</code> property 
      */
-    public BodyElement(enumRequestBodyMode mode) {
+    public BodyElement(RequestBodyMode mode) {
         this.setMode(mode);
     }
 
@@ -155,7 +155,7 @@ public class BodyElement extends CollectionElement {
      * @return BodyOptions
      */
     private BodyOptions getOptions()  {
-        if(this.getMode() == null || this.getMode() != enumRequestBodyMode.RAW) {
+        if(this.getMode() == null || this.getMode() != RequestBodyMode.RAW) {
             return null;
         }
         return options;
@@ -178,7 +178,7 @@ public class BodyElement extends CollectionElement {
      * @throws IllegalPropertyAccessException If body <code>mode</code> is not RAW
      */
     public String getRaw() throws IllegalPropertyAccessException {
-        if(this.getMode() != enumRequestBodyMode.RAW) {
+        if(this.getMode() != RequestBodyMode.RAW) {
             throw new IllegalPropertyAccessException("Body mode must be RAW to access raw content");
         }
         return raw;
@@ -193,7 +193,7 @@ public class BodyElement extends CollectionElement {
      * @throws IllegalPropertyAccessException If body <code>mode</code> is not RAW
      */
     public void setRaw(String raw) throws IllegalPropertyAccessException {
-        if(this.getMode() != enumRequestBodyMode.RAW) {
+        if(this.getMode() != RequestBodyMode.RAW) {
             throw new IllegalPropertyAccessException("Body mode must be RAW to access raw content");
         }
         
@@ -208,12 +208,12 @@ public class BodyElement extends CollectionElement {
      * @param lang
      * @throws IllegalPropertyAccessException If <code>mode</code> is not RAW
      */
-    public void setRawLanguage(enumRawBodyLanguage lang) throws IllegalPropertyAccessException {
+    public void setRawLanguage(RawBodyLanguage lang) throws IllegalPropertyAccessException {
         
-        if(this.getMode() != enumRequestBodyMode.RAW) {
+        if(this.getMode() != RequestBodyMode.RAW) {
             throw new IllegalPropertyAccessException("Body mode must be RAW to access raw content");
         }
-        if (this.getMode() != enumRequestBodyMode.RAW) {
+        if (this.getMode() != RequestBodyMode.RAW) {
             return;
         }
         try {
@@ -235,9 +235,9 @@ public class BodyElement extends CollectionElement {
      * @return enumRawBodyLanguage
      * @throws IllegalPropertyAccessException If <code>mode</code> is not RAW
      */
-    public enumRawBodyLanguage getRawLanguage() throws IllegalPropertyAccessException {
+    public RawBodyLanguage getRawLanguage() throws IllegalPropertyAccessException {
         
-        if (this.getMode() != enumRequestBodyMode.RAW) {
+        if (this.getMode() != RequestBodyMode.RAW) {
             throw new IllegalPropertyAccessException("Cannot access options unless body mode is RAW.");
         }
         try {
@@ -261,7 +261,7 @@ public class BodyElement extends CollectionElement {
      * @param language The language of the content, eg. <code>javascript</code>
      * @throws IllegalPropertyAccessException If <code>mode</code> is not RAW
      */
-    public void setRaw(String raw, enumRawBodyLanguage language) throws IllegalPropertyAccessException {
+    public void setRaw(String raw, RawBodyLanguage language) throws IllegalPropertyAccessException {
 
         switch(this.getMode()) {
             case TEXT: {
@@ -295,7 +295,7 @@ public class BodyElement extends CollectionElement {
      */
     public HashMap<String,String> getGraphql() throws IllegalPropertyAccessException {
         //TODO: This should probably be handled by a typeadapter
-        if (this.getMode() != enumRequestBodyMode.GRAPHQL) {
+        if (this.getMode() != RequestBodyMode.GRAPHQL) {
             throw new IllegalPropertyAccessException("Body mode must be GRAPHQL to access file property");
         }
         if(this.graphql == null)
@@ -479,7 +479,7 @@ public class BodyElement extends CollectionElement {
      * @throws IllegalPropertyAccessException If <code>mode</code> is not FILE
      */
     public String getFile() throws IllegalPropertyAccessException {
-        if (this.getMode() != enumRequestBodyMode.FILE) {
+        if (this.getMode() != RequestBodyMode.FILE) {
             throw new IllegalPropertyAccessException("Body mode must be FILE to access file property");
         }
         return this.file.getSrc();
@@ -493,7 +493,7 @@ public class BodyElement extends CollectionElement {
      * 
      */
     public void setBinarySrc(String file) {
-        if (this.getMode() == enumRequestBodyMode.FILE)
+        if (this.getMode() == RequestBodyMode.FILE)
             this.file.setSrc(file);
     }
 
@@ -504,21 +504,21 @@ public class BodyElement extends CollectionElement {
      * 
      * @return enumRequestBodyMode
      */
-    public enumRequestBodyMode getMode() {
+    public RequestBodyMode getMode() {
         if (mode == null) {
             return null;
         }
         switch (mode) {
             case "file":
-                return enumRequestBodyMode.FILE;
+                return RequestBodyMode.FILE;
             case "formdata":
-                return enumRequestBodyMode.FORMDATA;
+                return RequestBodyMode.FORMDATA;
             case "urlencoded":
-                return enumRequestBodyMode.URLENCODED;
+                return RequestBodyMode.URLENCODED;
             case "graphql":
-                return enumRequestBodyMode.GRAPHQL;
+                return RequestBodyMode.GRAPHQL;
             case "raw":
-                return enumRequestBodyMode.RAW;
+                return RequestBodyMode.RAW;
             default:
                 return null;
         }
@@ -530,7 +530,7 @@ public class BodyElement extends CollectionElement {
      * 
      * @param newMode
      */
-    public void setMode(enumRequestBodyMode newMode) {
+    public void setMode(RequestBodyMode newMode) {
         switch (newMode) {
             case FILE:
                 this.mode = "file";
@@ -636,32 +636,32 @@ public class BodyElement extends CollectionElement {
     private class BodyRaw {
         private String language;
 
-        public BodyRaw(enumRawBodyLanguage language) {
+        public BodyRaw(RawBodyLanguage language) {
             this.setLanguage(language);
         }
 
-        public enumRawBodyLanguage getLanguage() {
+        public RawBodyLanguage getLanguage() {
             if (language == null) {
                 return null;
             }
             switch (language) {
                 case "javascript":
-                    return enumRawBodyLanguage.JAVASCRIPT;
+                    return RawBodyLanguage.JAVASCRIPT;
                 case "json":
-                    return enumRawBodyLanguage.JSON;
+                    return RawBodyLanguage.JSON;
                 case "html":
-                    return enumRawBodyLanguage.HTML;
+                    return RawBodyLanguage.HTML;
                 case "xml":
-                    return enumRawBodyLanguage.XML;
+                    return RawBodyLanguage.XML;
                 case "graphql":
-                    return enumRawBodyLanguage.GRAPHQL;
+                    return RawBodyLanguage.GRAPHQL;
                 default:
                     return null;
             }
             
         }
 
-        public void setLanguage(enumRawBodyLanguage newLanguage) {
+        public void setLanguage(RawBodyLanguage newLanguage) {
             switch (newLanguage) {
                 case JSON:
                     this.language = "json";
@@ -734,7 +734,7 @@ public class BodyElement extends CollectionElement {
             this.raw = raw;
         }
 
-        public BodyOptions(enumRawBodyLanguage language) {
+        public BodyOptions(RawBodyLanguage language) {
             this.raw = new BodyRaw(language);
         }
 
